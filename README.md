@@ -19,3 +19,14 @@ or
 ```
 pip install -r requirements.txt
 ```
+
+2. Basic usage (creation of a 1% data split) of the Wiki1m dataset
+
+```
+python create_split.py --input_file https://huggingface.co/datasets/princeton-nlp/datasets-for-simcse/resolve/main/wiki1m_for_simcse.txt --split_percentage 1
+```
+
+Output will be the file called: 
+
+```
+```
