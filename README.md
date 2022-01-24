@@ -2,7 +2,7 @@
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-red.svg)](#python)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-Tool that creates data splits from text files, where data is organized on a line-by-line basis. Splits are to be defined in percentages of lines. Input data can either be a local text file or a URL to a text file. If an URL is provided the data will be downloaded (if the file is not found in the cache directory). Optionally, the user can specify to ignore cached files.
+Tool that creates random data splits from text files, where data is organized on a line-by-line basis. Splits are to be defined in percentages of lines. Input data can either be a local text file or a URL to a text file. If an URL is provided the data will be downloaded (if the file is not found in the cache directory). Optionally, the user can specify to ignore cached files. For reproducibility reasons a random seed is set prior to drawing the random numbers to select the lines from the file.
 
 
 
