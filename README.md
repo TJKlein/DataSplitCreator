@@ -29,4 +29,5 @@ python create_split.py --input_file https://huggingface.co/datasets/princeton-nl
 Output will be the file called: 
 
 ```
+wiki1m_for_simcse_001percent.txt
 ```
