@@ -32,3 +32,11 @@ Output will be the file called:
 ```
 wiki1m_for_simcse_001percent.txt
 ```
+
+3. If you want to ignore cache, simply specify using the FLAG --ignore_cache:
+
+```
+python create_split.py --input_file https://huggingface.co/datasets/princeton-nlp/datasets-for-simcse/resolve/main/wiki1m_for_simcse.txt \ 
+--split_percentage 1 \
+--ignore_cache
+```
