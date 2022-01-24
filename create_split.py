@@ -55,15 +55,12 @@ def main():
     if FLAGS.output_file == None:
         _, filename = os.path.split(FLAGS.input_file)
         extension = os.path.splitext(FLAGS.input_file)[1]
-        
         # remove path from input filename (cached0
-        _,FLAGS.output_file = os.path.split(FLAGS.input_file.replace("."+extension, "_"+str(FLAGS.split_percentage)+"percent."+extension))
+        _,FLAGS.output_file = os.path.split(FLAGS.input_file.replace(extension, "_"+f'{int(FLAGS.split_percentage):03}'+"percent"+extension))
     
     # check if target path exists, if not create it
     if not os.path.exists(os.path.dirname(os.path.abspath(FLAGS.output_file))):
         os.mkdir(os.path.dirname(os.path.abspath(FLAGS.output_file)))
-        
-    print(FLAGS.output_file)
     
     # read data from file
     input_lines = open(FLAGS.input_file, 'r').readlines()
