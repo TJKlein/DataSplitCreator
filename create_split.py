@@ -12,7 +12,7 @@ parser = argparse.ArgumentParser()
 
 parser.add_argument('--input_file', required=True, type=str, help='Filename or http address of text file from which split is to be generated.')
 parser.add_argument('--seed', type=int, default=48, help='Random seed to produce reproducible split.')
-parser.add_argument('--split_percentage', required=True, type=int, help='Percentage of samples to be in target split.')
+parser.add_argument('--split_percentage', required=True, type=float, help='Percentage of samples to be in target split.')
 parser.add_argument('--output_file', type=str, help='Name of split file  to be generated. If unspecified, postfix corresponding to split percentage will be attached to input filename.')
 parser.add_argument('--cache_dir', type=str, default='./cache', help='Cache directory for files downloaded from internet')
 parser.add_argument('--ignore_cache', help='Set if cached files should be ignored.',  action='store_true')
@@ -56,7 +56,7 @@ def main():
         _, filename = os.path.split(FLAGS.input_file)
         extension = os.path.splitext(FLAGS.input_file)[1]
         # remove path from input filename (cached0
-        _,FLAGS.output_file = os.path.split(FLAGS.input_file.replace(extension, "_"+f'{int(FLAGS.split_percentage):03}'+"percent"+extension))
+        _,FLAGS.output_file = os.path.split(FLAGS.input_file.replace(extension, "_{:05.1F}".format(FLAGS.split_percentage)+"percent"+extension))
     
     # check if target path exists, if not create it
     if not os.path.exists(os.path.dirname(os.path.abspath(FLAGS.output_file))):
