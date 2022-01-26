@@ -30,7 +30,7 @@ python create_split.py --input_file https://huggingface.co/datasets/princeton-nl
 Output will be the file called: 
 
 ```
-wiki1m_for_simcse_001percent.txt
+wiki1m_for_simcse_001.0percent.txt
 ```
 
 3. If you want to ignore cache, simply specify using the FLAG --ignore_cache:
