@@ -8,7 +8,7 @@ Tool that creates random data splits from text files, where data is organized on
 
 ## Download and Installation
 
-1. Install the requiremennts:
+### 1. Install the requiremennts:
 
 ```
 conda install --yes --file requirements.txt
@@ -20,9 +20,9 @@ or
 pip install -r requirements.txt
 ```
 
-2. Basic usage:
+### 2. Basic usage:
 
-2.1. Creation of a 1% data split of the Wiki1m dataset
+#### 2.1. Creation of a 1% data split of the Wiki1m dataset
 ```
 python create_split.py --input_file https://huggingface.co/datasets/princeton-nlp/datasets-for-simcse/resolve/main/wiki1m_for_simcse.txt --split_percentage 1
 ```
@@ -33,7 +33,7 @@ Output will be the file called:
 wiki1m_for_simcse_001.00percent.txt
 ```
 
-2.2. Creation of a 1000 samples data split from Wikipedia (English):
+#### 2.2. Creation of a 1000 samples data split from Wikipedia (English):
 
 ```
 python create_split.py --input_file_or_path wikipedia-en --split_samples 1000
@@ -45,7 +45,7 @@ Output will be the file called:
 wikipedia-en_1K_samples.txt
 ```
 
-3. If you want to ignore cache, simply specify using the FLAG --ignore_cache:
+### 3. If you want to ignore cache, simply specify using the FLAG --ignore_cache:
 
 ```
 python create_split.py --input_file https://huggingface.co/datasets/princeton-nlp/datasets-for-simcse/resolve/main/wiki1m_for_simcse.txt \ 
