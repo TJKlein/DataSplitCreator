@@ -108,7 +108,7 @@ def main():
         extension = ".txt" #os.path.splitext(FLAGS.input_file_or_path)[1]
         # remove path from input filename (cached0
         if FLAGS.split_percentage:
-            _,FLAGS.output_file = os.path.split(FLAGS.input_file_or_path.replace(extension, "_{:05.2F}".format(FLAGS.split_percentage)+"percent"+extension))
+            _,FLAGS.output_file = os.path.split(FLAGS.input_file_or_path.replace(extension, "_{:06.2F}".format(FLAGS.split_percentage)+"percent"+extension))
         else:
             _,FLAGS.output_file = os.path.split(FLAGS.input_file_or_path.replace(extension, "_"+str(numerize.numerize(FLAGS.split_samples))+"_samples"+extension))
     
