@@ -9,6 +9,8 @@ from urllib.parse import urlparse
 import requests
 import time
 import nltk
+from hashlib import md5
+from mmap import mmap, ACCESS_READ
 
 nltk. download("punkt")
 parser = argparse.ArgumentParser()
@@ -108,9 +110,9 @@ def main():
         extension = ".txt" #os.path.splitext(FLAGS.input_file_or_path)[1]
         # remove path from input filename (cached0
         if FLAGS.split_percentage:
-            _,FLAGS.output_file = os.path.split(FLAGS.input_file_or_path.replace(extension, "_{:06.2F}".format(FLAGS.split_percentage)+"percent"+extension))
+            _,FLAGS.output_file = os.path.split(FLAGS.input_file_or_path.replace(extension, "_{:06.2F}".format(FLAGS.split_percentage)+"percent_seed"+str(FLAGS.seed)+extension))
         else:
-            _,FLAGS.output_file = os.path.split(FLAGS.input_file_or_path.replace(extension, "_"+str(numerize.numerize(FLAGS.split_samples))+"_samples"+extension))
+            _,FLAGS.output_file = os.path.split(FLAGS.input_file_or_path.replace(extension, "_"+str(numerize.numerize(FLAGS.split_samples))+"_samples_seed"+str(FLAGS.seed)+extension))
     
     # check if target path exists, if not create it
     if not os.path.exists(os.path.dirname(os.path.abspath(FLAGS.output_file))):
@@ -137,13 +139,19 @@ def main():
                 f.write('\n')
             avg += len(input_lines[i])
     avg /= len(idx)
-    print("Number of sentences: "+str(len(idx))+" | Average length: "+str(avg)+" | Written to file: "+FLAGS.output_file)
+    
+    
+    with open(FLAGS.output_file, "r") as f:
+        # memory-map the file, size 0 means implies whole file
+        mm = mmap(f.fileno(), 0, access=ACCESS_READ)
+    
+        print("Number of sentences: "+str(len(idx))+" | Average length: "+str(avg)+" | Written to file: "+FLAGS.output_file+" | MD5 Checksum: "+str(md5(mm).hexdigest()))
     
     
     # sanity check
     output_lines = open(FLAGS.output_file, 'r').readlines()
     if (FLAGS.split_percentage and not(len(output_lines) == int(np.ceil(len(input_lines)/100*FLAGS.split_percentage)))) or (FLAGS.split_samples and not (len(output_lines) == FLAGS.split_samples)):
         print("Split creation failed - mismatch in line numbers")
-
+        
 if __name__ == "__main__":
     main()
