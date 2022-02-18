@@ -113,7 +113,11 @@ def main():
             # make sure that we have at least 2 decimal points in the output, more if necessary
             digits_after_point = str(FLAGS.split_percentage)[::-1].find('.')
             digits_after_point = np.max([2, digits_after_point])
-            _,FLAGS.output_file = os.path.split(FLAGS.input_file_or_path.replace(extension, "_{:06.{decimal_points}F}".format(FLAGS.split_percentage, decimal_points=digits_after_point)+"percent_seed"+str(FLAGS.seed)+extension))
+            if digits_after_point > 2:
+                all_digits = 6 + digits_after_point - 2
+            else:
+                all_digits = 6
+            _,FLAGS.output_file = os.path.split(FLAGS.input_file_or_path.replace(extension, "_{:0{all_digits}.{decimal_points}F}".format(FLAGS.split_percentage, decimal_points=digits_after_point, all_digits = all_digits)+"percent_seed"+str(FLAGS.seed)+extension))
         else:
             _,FLAGS.output_file = os.path.split(FLAGS.input_file_or_path.replace(extension, "_"+str(numerize.numerize(FLAGS.split_samples))+"_samples_seed"+str(FLAGS.seed)+extension))
     
