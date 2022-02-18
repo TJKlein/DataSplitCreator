@@ -30,7 +30,7 @@ python create_split.py --input_file_or_path https://huggingface.co/datasets/prin
 Output will be the file called: 
 
 ```
-wiki1m_for_simcse_001.00percent.txt
+wiki1m_for_simcse_001.00percent_seed48.txt
 ```
 
 #### 2.2. Creation of a 1000 samples data split from Wikipedia (English):
@@ -42,7 +42,7 @@ python create_split.py --input_file_or_path wikipedia-en --split_samples 1000
 Output will be the file called: 
 
 ```
-wikipedia-en_1K_samples.txt
+wikipedia-en_1K_samples_seed48.txt
 ```
 
 ### 3. If you want to ignore cache, simply specify using the FLAG --ignore_cache:
